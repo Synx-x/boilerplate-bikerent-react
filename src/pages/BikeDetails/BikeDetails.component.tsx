@@ -27,7 +27,6 @@ const BikeDetails = ({ bike }: BikeDetailsProps) => {
   const rateByWeek = rateByDay * 7
 
   const servicesFee = getServicesFee(rateByDay)
-  const total = rateByDay + servicesFee
 
   return (
     <div data-testid='bike-details-page'>
