@@ -11,4 +11,6 @@ export default interface Bike {
   imageUrls: string[]
   cardImage?: string
   city?: string
+  rateByDay: number, 
+  serviceFeeRate: number,
 }

@@ -5,6 +5,11 @@ import { SERVICE_FEE_PERCENTAGE } from './BikeDetails.contants'
 import { getServicesFee } from './BikeDetails.utils'
 import BikeDetails from './BikeDetails.component'
 
+// Mock the API client instead of axios
+jest.mock('services/api', () => ({
+  post: jest.fn(),
+}))
+
 describe('BikeDetails page', () => {
   beforeEach(() => {
     render(
@@ -41,19 +46,21 @@ describe('BikeDetails page', () => {
     expect(mapElement).toBeInTheDocument()
   })
 
-  it('should has the overview container with the prices, total and booking button', () => {
-    const overviewContainerElement = screen.getByTestId('bike-overview-container')
-    expect(overviewContainerElement).toBeInTheDocument()
+  it('should have the RentComponent with the pricing details and booking button', () => {
+    const rentComponent = screen.getByTestId('rent-component')
+    expect(rentComponent).toBeInTheDocument()
 
-    const pricesElements = screen.getAllByTestId('bike-overview-single-price')
-    expect(pricesElements).not.toBeNull()
-    expect(pricesElements.length).toBe(2)
+    const subtotal = screen.getByTestId('bike-overview-subtotal')
+    expect(subtotal).toBeInTheDocument()
 
-    const totalElement = screen.getByTestId('bike-overview-total')
-    expect(totalElement).toBeInTheDocument()
+    const serviceFee = screen.getByTestId('bike-overview-service-fee')
+    expect(serviceFee).toBeInTheDocument()
 
-    const bookingButtonElement = screen.getByTestId('bike-booking-button')
-    expect(bookingButtonElement).toBeInTheDocument()
+    const total = screen.getByTestId('bike-overview-total')
+    expect(total).toBeInTheDocument()
+
+    const bookingButton = screen.getByRole('button', { name: /add to booking/i })
+    expect(bookingButton).toBeInTheDocument()
   })
 })
 

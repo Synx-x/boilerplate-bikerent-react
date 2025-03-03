@@ -20,6 +20,8 @@ export const mockedBike: Bike = {
   maxLoad: 110,
   rate: 135,
   ratings: 4.8,
+  rateByDay: 20,
+  serviceFeeRate: 0.15,
 }
 
 export const mockedBikesArray = [
